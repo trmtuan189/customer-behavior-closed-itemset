@@ -1,0 +1,6 @@
+﻿min_support,min_count,frequent,closed,compression_ratio,charm_matches_reference,saved_file_matches,t_reference_s,t_charm_s,data_sha256
+0.05,1977,28,28,1.0,True,,1.2,0.88,ad35aa8fc91b0ac3b4e249d476124f970dbb9c088a4b71badd857f1c9b2fe7da
+0.03,1186,110,110,1.0,True,,1.49,1.72,ad35aa8fc91b0ac3b4e249d476124f970dbb9c088a4b71badd857f1c9b2fe7da
+0.02,791,323,323,1.0,True,,1.67,2.87,ad35aa8fc91b0ac3b4e249d476124f970dbb9c088a4b71badd857f1c9b2fe7da
+0.01,396,1342,1342,1.0,True,,2.41,8.5,ad35aa8fc91b0ac3b4e249d476124f970dbb9c088a4b71badd857f1c9b2fe7da
+0.005,198,7774,7774,1.0,True,,5.76,26.79,ad35aa8fc91b0ac3b4e249d476124f970dbb9c088a4b71badd857f1c9b2fe7da
