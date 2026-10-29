@@ -1,0 +1,12 @@
+{
+  "n_transactions": 39529,
+  "total_rules": 7452,
+  "passed": 7452,
+  "failed": 0,
+  "data_sha256": "ad35aa8fc91b0ac3b4e249d476124f970dbb9c088a4b71badd857f1c9b2fe7da",
+  "rules_sha256": "416514498947cc8043e4e2b4885d4bcfda5282b4be8c9144eb1104ffdba6e28a",
+  "min_support": "0.005",
+  "min_confidence": 0.3,
+  "min_lift": 1.5,
+  "scope": "Exported rule counts and rounded metrics; not completeness or family labels."
+}

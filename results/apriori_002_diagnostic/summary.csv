@@ -1,0 +1,2 @@
+﻿algorithm,min_support,valid_runs,requested_runs,median_seconds,median_peak_process_mb,n_itemsets
+Apriori,0.02,1,1,269.81837480000104,220.78125,323

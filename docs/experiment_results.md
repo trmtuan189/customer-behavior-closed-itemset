@@ -69,3 +69,36 @@ Các giá trị là trung vị của 3 lần hợp lệ, ngoại trừ Apriori t
 Các lần chạy được ghi nhận hợp lệ đều khớp bộ tham chiếu. Apriori và FP-Growth được đối chiếu toàn bộ tập phổ biến; CHARM được đối chiếu tập đóng.
 
 Chỉ số bộ nhớ trong file kết quả là bộ nhớ đỉnh của toàn tiến trình trước bước kiểm chứng, bao gồm thư viện và dữ liệu đầu vào. Đây không phải bộ nhớ riêng của thuật toán. CHARM hiện import pandas, trong khi hai baseline không có cùng phụ thuộc này, nên cần thận trọng khi diễn giải chênh lệch bộ nhớ.
+## 7. Kiểm tra bổ sung Apriori tại support 2%
+
+Sau khi một lần chạy trong benchmark chung bị timeout, nhóm thực hiện một lần kiểm tra bổ sung riêng cho Apriori tại support 2%.
+
+Kết quả:
+
+- Số giao dịch: 39.529.
+- Support count tối thiểu: 791.
+- Số tập phổ biến: 323.
+- Thời gian khai thác: 269,82 giây.
+- Kết quả khớp bộ tham chiếu.
+- Nhật ký xác nhận hoàn thành bước khai thác và kiểm chứng.
+
+Nguồn: results/apriori_002_diagnostic/runs.csv và Apriori_0.02_1.log.
+
+Lần kiểm tra bổ sung thành công cho thấy cấu hình này có thể hoàn thành và trả kết quả đúng. Nguyên nhân timeout của lần chạy trước chưa xác định. Kết quả bổ sung được trình bày riêng, không thay thế hoặc xóa bản ghi timeout trong benchmark ban đầu.
+## 8. Kiểm chứng luật kết hợp
+
+Nhóm kiểm tra độc lập các luật đã xuất bằng cách đếm trực tiếp trên cơ sở dữ liệu 39.529 giao dịch, không sử dụng lại cơ chế tra support từ tập đóng.
+
+Với mỗi luật X → Y, chương trình đếm số giao dịch chứa X, chứa Y và chứa đồng thời X ∪ Y. Từ đó tính lại support, confidence và lift, rồi đối chiếu với các giá trị đã xuất theo độ làm tròn tương ứng.
+
+Kết quả kiểm tra:
+
+- Tổng số luật: 7.452.
+- Số luật vượt qua kiểm tra: 7.452.
+- Số luật không vượt qua kiểm tra: 0.
+
+Chương trình cũng kiểm tra cấu trúc luật, luật trùng và các ngưỡng support, confidence, lift.
+
+Nguồn: results/rule_validation/summary.json và checked_rules.csv.
+
+Kết quả xác nhận tính nhất quán về số đếm và các chỉ số của những luật đã xuất. Phép kiểm tra chưa chứng minh tính đầy đủ của tập luật, tính đúng của nhãn nhóm sản phẩm hoặc hiệu quả ứng dụng kinh doanh.

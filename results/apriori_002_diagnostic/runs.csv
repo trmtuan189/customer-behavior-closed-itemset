@@ -1,0 +1,2 @@
+﻿algorithm,min_support,repeat,status,seconds,peak_process_mb,n_itemsets,matches_reference,min_count,n_transactions,data_sha256,error
+Apriori,0.02,1,ok,269.81837480000104,220.78125,323,True,791,39529,ad35aa8fc91b0ac3b4e249d476124f970dbb9c088a4b71badd857f1c9b2fe7da,

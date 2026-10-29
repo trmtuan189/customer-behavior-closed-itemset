@@ -43,6 +43,10 @@ def peak_memory_mb():
 
 
 def worker(a):
+    def stage(message):
+        print(message, file=sys.stderr, flush=True)
+
+    stage('IMPORT_START')
     sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'algorithms'))
     if a.algo == 'CHARM':
         from charm_impl import charm_mine
@@ -50,10 +54,12 @@ def worker(a):
         from apriori import apriori
     else:
         from fp_growth import fp_growth
+    stage('LOAD_START')
     tx, _, sha = load_transactions(a.data)
     # All algorithms receive the same ordered, duplicate-free baskets.
     baskets = [sorted(t) for t in tx]
     mc = support_to_count(a.support, len(tx))
+    stage('MINING_START')
     start = time.perf_counter()
     if a.algo == 'CHARM':
         rows, _ = charm_mine(baskets, mc)
@@ -64,11 +70,14 @@ def worker(a):
         mined, _ = fp_growth(baskets, float(a.support), min_count=mc)
     seconds = time.perf_counter() - start
     peak = peak_memory_mb()
+    stage(f'MINING_DONE seconds={seconds:.6f}')
     # Verification runs after both timing and memory capture.
     from reference_miner import mine_frequent
     from closed_filter import filter_closed
+    stage('VERIFY_START')
     reference = mine_frequent(tx, mc)
     expected = filter_closed(reference) if a.algo == 'CHARM' else reference
+    stage('VERIFY_DONE')
     print(json.dumps(dict(seconds=seconds, peak_process_mb=peak,
                           n_itemsets=len(mined), matches_reference=mined == expected,
                           min_count=mc, n_transactions=len(tx), data_sha256=sha)))
@@ -86,6 +95,8 @@ def main():
     ap.add_argument('--data', default='data/processed/transactions_v1.jsonl')
     ap.add_argument('--out', default='results/benchmark_all')
     ap.add_argument('--supports', nargs='+', default=['0.05', '0.03', '0.02'])
+    ap.add_argument('--algos', nargs='+', choices=['CHARM', 'FP-Growth', 'Apriori'],
+                    default=['CHARM', 'FP-Growth', 'Apriori'])
     ap.add_argument('--repeats', type=int, default=3)
     ap.add_argument('--timeout', type=int, default=900)
     ap.add_argument('--worker', action='store_true')
@@ -104,7 +115,7 @@ def main():
         ap.error('Output already exists. Choose another --out directory.')
     metadata = dict(python=sys.version, platform=platform.platform(),
                     processor=platform.processor(), supports=a.supports,
-                    repeats=a.repeats, timeout=a.timeout,
+                    repeats=a.repeats, timeout=a.timeout, algorithms=a.algos,
                     memory_scope='Worker lifetime peak working set before verification; includes imports and input.',
                     timing_scope='Mining call and output normalization only; excludes imports, input and verification.')
     revision = subprocess.run(['git', 'rev-parse', 'HEAD'], capture_output=True, text=True)
@@ -113,7 +124,7 @@ def main():
     runs, summaries = [], []
     failed = False
     for support in a.supports:
-        for algo in ['CHARM', 'FP-Growth', 'Apriori']:
+        for algo in a.algos:
             completed = []
             for repeat in range(1, a.repeats + 1):
                 print(f'{algo} | support={support} | run {repeat}/{a.repeats}', flush=True)
@@ -124,6 +135,7 @@ def main():
                        '--data', a.data, '--algo', algo, '--support', support]
                 try:
                     p = subprocess.run(cmd, capture_output=True, text=True, timeout=a.timeout)
+                    (out / f'{algo}_{support}_{repeat}.log').write_text(p.stderr, encoding='utf-8')
                     if p.returncode:
                         raise RuntimeError(p.stderr[-1500:])
                     info = json.loads(p.stdout.strip().splitlines()[-1])
@@ -131,7 +143,11 @@ def main():
                     if info['matches_reference']:
                         completed.append(info)
                     print(f"  {info['seconds']:.3f}s | peak={info['peak_process_mb']} MB | match={info['matches_reference']}", flush=True)
-                except subprocess.TimeoutExpired:
+                except subprocess.TimeoutExpired as exc:
+                    diagnostic = exc.stderr or ''
+                    if isinstance(diagnostic, bytes):
+                        diagnostic = diagnostic.decode('utf-8', errors='replace')
+                    (out / f'{algo}_{support}_{repeat}.log').write_text(diagnostic, encoding='utf-8')
                     rec.update(status='timeout', error=f'Worker exceeded {a.timeout}s including setup and verification')
                 except Exception as exc:
                     rec.update(status='error', error=str(exc))
