@@ -1,0 +1,15 @@
+{
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",
+  "supports": [
+    "0.05",
+    "0.03",
+    "0.02"
+  ],
+  "repeats": 3,
+  "timeout": 900,
+  "memory_scope": "Worker lifetime peak working set before verification; includes imports and input.",
+  "timing_scope": "Mining call and output normalization only; excludes imports, input and verification.",
+  "git_revision": "f73f3956a4af4041e4cc17fb7ec62a0ae0474796"
+}
