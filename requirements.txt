@@ -1,0 +1,7 @@
+# Versions used by the research environment (Python 3.13).
+# Demo HTTP server and unit-test runner use the Python standard library.
+numpy==2.1.2
+pandas==2.2.3
+openpyxl==3.1.5
+matplotlib==3.9.2
+psutil==6.0.0

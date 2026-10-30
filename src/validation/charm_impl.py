@@ -9,7 +9,7 @@ from time import perf_counter
 from pathlib import Path
 from decimal import Decimal, ROUND_CEILING
 import json
-import pandas as pd
+#import pandas as pd
 
 
 @dataclass(frozen=True)

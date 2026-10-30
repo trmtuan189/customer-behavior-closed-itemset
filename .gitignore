@@ -219,3 +219,24 @@ __marimo__/
 data/raw/
 archive_v0/
 __pycache__/
+
+# Generated research outputs and private inputs stay local.
+/results/
+/online+retail+ii/
+**/internal/
+**/privacy_key.json
+**/credentials*.json
+.env.*
+*.key
+*.pem
+*.pfx
+*.docx
+*.pdf
+*.pptx
+*.xlsx
+*.xls
+*.csv
+*.jsonl
+*.png
+*.jpg
+*.jpeg
