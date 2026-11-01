@@ -62,3 +62,76 @@ Có thể thử giới thiệu hộp Strawberry trong mục sản phẩm mua kè
 ### Giới hạn
 
 Luật được rút ra từ dữ liệu lịch sử và chưa được đánh giá trên dữ liệu mới. Confidence cao chưa đủ để khẳng định đề xuất mua kèm sẽ đem lại hiệu quả kinh doanh.
+
+## 4. Phát hiện thứ ba: đĩa giấy và khăn giấy thường được mua cùng nhau
+
+Luật: Set/6 Red Spotty Paper Plates → Set/20 Red Retrospot Paper Napkins.
+
+Đây là luật số 12 trong results/findings_0_005.md.
+
+### Số liệu
+
+- Số hóa đơn chứa cả hai sản phẩm: 685.
+- Support: 1,73%.
+- Confidence: 69,6%.
+- Lift: khoảng 13,0.
+
+### Giải thích
+
+Có 685 hóa đơn chứa đồng thời bộ đĩa giấy và bộ khăn giấy này, chiếm khoảng 1,73% trong 39.529 giao dịch.
+
+Trong các hóa đơn có bộ đĩa giấy, khoảng 69,6% cũng có bộ khăn giấy. Tỷ lệ này cao gấp khoảng 13 lần tỷ lệ xuất hiện của bộ khăn giấy trong toàn bộ hóa đơn.
+
+Dựa trên tên, hai sản phẩm khác loại nhưng có thể bổ trợ về công dụng trong bối cảnh sử dụng bàn ăn hoặc bàn tiệc. Đây là giả thuyết diễn giải từ tên sản phẩm và quan hệ đồng xuất hiện, chưa phải bằng chứng về mục đích mua thực tế.
+
+### Đề xuất ứng dụng
+
+Có thể thử gợi ý bộ khăn giấy khi khách chọn bộ đĩa giấy, hoặc thử trưng bày hai sản phẩm gần nhau. Hiệu quả cần được đánh giá riêng trước khi khẳng định làm tăng tỷ lệ mua hoặc doanh thu.
+
+### Giới hạn
+
+Dữ liệu chưa xác nhận khách mua để tổ chức tiệc, sử dụng cá nhân hay bán lại. Luật không xác định thứ tự mua và không phải quan hệ nhân quả. Phân loại bổ trợ dựa trên tên, chưa đối chiếu danh mục chính thức.
+
+## 5. Phân biệt các quan hệ sản phẩm trong ba ví dụ
+
+| Ví dụ | Diễn giải sơ bộ từ tên sản phẩm | Phạm vi kết luận |
+|---|---|---|
+| Hai mẫu túi | Sản phẩm tương đồng, khác mẫu | Đồng xuất hiện giữa các mẫu túi |
+| Hai mẫu hộp gốm | Sản phẩm tương đồng, khác mẫu | Đồng xuất hiện giữa các mẫu hộp |
+| Đĩa giấy và khăn giấy | Khác loại, có thể bổ trợ về công dụng | Giả thuyết gợi ý mua kèm, cần đánh giá thêm |
+
+Không dùng nhãn khác nhóm do script tự suy ra để khẳng định cả ba ví dụ đều là mua chéo giữa những ngành hàng khác nhau. Đơn vị thống kê là hóa đơn, không phải khách hàng duy nhất.
+
+## 6. Phát hiện thứ tư: hai mẫu tách Regency thường được mua cùng nhau
+
+Luật: Green Regency Teacup And Saucer → Roses Regency Teacup And Saucer (luật số 6 trong bảng phát hiện).
+
+### Số liệu và diễn giải
+
+Hai bộ tách và đĩa lót cùng xuất hiện trong 1.034 hóa đơn, tương ứng support khoảng 2,62%. Trong các hóa đơn có mẫu Green Regency, khoảng 76,4% cũng có mẫu Roses Regency. Lift khoảng 21,2 cho thấy tỷ lệ có mẫu Roses trong nhóm hóa đơn chứa mẫu Green cao gấp khoảng 21,2 lần tỷ lệ chung.
+
+Dựa trên tên sản phẩm, đây là quan hệ đồng xuất hiện giữa hai mẫu trong cùng dòng Regency. Có thể thử giới thiệu mẫu Roses khi khách xem mẫu Green, với giả thuyết khách quan tâm nhiều mẫu phối hợp.
+
+### Giới hạn
+
+Chưa xác nhận khách muốn phối bộ, sưu tập hay mua để bán lại. Lift cao không chứng minh hiệu quả kinh doanh cao hơn các luật khác; cần xem cả số giao dịch, confidence và kết quả đánh giá ứng dụng. Hai sản phẩm cùng loại nên không gọi đây là mua chéo giữa các ngành hàng.
+
+## 7. Phát hiện thứ năm: hai mẫu hộp cơm thường được mua cùng nhau
+
+Luật: Dolly Girl Lunch Box → Spaceboy Lunch Box (luật số 8 trong bảng phát hiện).
+
+### Số liệu và diễn giải
+
+Hai mẫu hộp cơm cùng xuất hiện trong 829 hóa đơn, chiếm khoảng 2,10% tổng giao dịch. Trong các hóa đơn có Dolly Girl Lunch Box, khoảng 62,2% cũng có Spaceboy Lunch Box. Lift khoảng 18,0 cho thấy tỷ lệ có Spaceboy trong nhóm hóa đơn chứa Dolly Girl cao gấp khoảng 18 lần tỷ lệ chung.
+
+Theo tên, đây là hai mẫu hộp cơm tương đồng. Có thể thử hiển thị mẫu Spaceboy trong danh sách mẫu liên quan khi khách chọn Dolly Girl, đồng thời theo dõi hiệu quả thực tế của gợi ý.
+
+### Giới hạn
+
+Không suy ra giới tính người sử dụng, số trẻ trong gia đình hoặc mục đích mua quà từ tên sản phẩm. Hóa đơn có hai mẫu chưa xác nhận cùng một cá nhân sử dụng cả hai.
+
+## 8. Tổng hợp và phạm vi ứng dụng
+
+Năm ví dụ được chọn để minh họa, không phải mẫu đại diện thống kê của toàn bộ luật. Bốn ví dụ mô tả các sản phẩm tương đồng; một ví dụ gợi ý quan hệ bổ trợ về công dụng. Phân loại này dựa trên tên, cần đối chiếu danh mục nếu muốn dùng như nhãn chính thức.
+
+Ứng dụng dự kiến là gợi ý mua kèm dựa trên luật lịch sử. Khi hiển thị, cần nêu sản phẩm, số hóa đơn, confidence và lift. Các chỉ số này không phải xác suất mua trong tương lai đã được kiểm định. Muốn đánh giá gợi ý cho tương lai cần dữ liệu đánh giá riêng, ưu tiên chia theo thời gian.
