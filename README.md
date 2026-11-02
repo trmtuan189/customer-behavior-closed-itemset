@@ -2,7 +2,7 @@
 
 > **Mining Customer Behavior Based on Closed Frequent Itemsets** — Khoá luận tốt nghiệp ngành Khoa học Máy tính, Trường Đại học Công nghiệp TP. Hồ Chí Minh (IUH), năm 2026. Nhóm 2 sinh viên.
 
-**English summary.** This repository implements and compares three frequent-itemset mining algorithms — **Apriori**, **FP-Growth**, and **CHARM** (closed itemsets) — on real transaction data (UCI *Online Retail II*, ~39.5k invoices after cleaning). The CHARM implementation is validated against an independent reference miner (all frequent itemsets → filter closed): it matches 100% at five support thresholds. Next steps are performance benchmarking, association-rule generation, customer-behavior analysis and a product-recommendation demo ("customers who bought X also bought Y").
+**English summary.** This repository implements and compares three frequent-itemset mining algorithms — **Apriori**, **FP-Growth**, and **CHARM** (closed itemsets) — on real transaction data (UCI *Online Retail II*, ~39.5k invoices after cleaning). The CHARM implementation is validated against an independent reference miner (all frequent itemsets → filter closed): it matches 100% at five support thresholds. Preliminary benchmarks and 7,452 exported rules are available; all exported rule metrics match direct transaction counts. Next steps are benchmark finalization, customer-behavior analysis and a product-recommendation demo ("customers who bought X also bought Y").
 
 ---
 
@@ -26,7 +26,7 @@ Mục tiêu:
 | Cài đặt Apriori, FP-Growth | Xong, đã kiểm chứng đúng trên dữ liệu thật ở các mức support đã chạy |
 | Cài đặt CHARM | Xong, khớp 100% với đáp án độc lập ở 5 mức support |
 | Đo hiệu năng so sánh (thời gian, bộ nhớ, số tập, tỉ lệ nén) | Đang làm |
-| Sinh luật kết hợp và lọc luật | Chưa làm |
+| Sinh luật kết hợp và lọc luật | Đã xuất 7.452 luật theo phạm vi script; cả 7.452 khớp phép đếm trực tiếp |
 | Phân tích hành vi khách hàng theo nhóm | Chưa làm |
 | Demo gợi ý sản phẩm (web) | Có bản nguyên mẫu, chưa hoàn thiện |
 | Báo cáo, slide, poster | Chưa làm |
@@ -58,7 +58,9 @@ File kết quả: `data/processed/transactions_v1.jsonl`, mỗi dòng là một 
 ```json
 {"InvoiceNo": "489434", "items": ["21232", "21523", "21871", "22041", "22064", "79323P", "79323W", "85048"]}
 ```
-SHA256 của file: `82af1569237c6973f24a2992792fb78bb893c85fe245ec4ffb3dba663d8cc38e` (dùng để đảm bảo mọi thuật toán chạy trên cùng một dữ liệu).
+SHA256 của file Windows hiện tại: `ad35aa8fc91b0ac3b4e249d476124f970dbb9c088a4b71badd857f1c9b2fe7da`.
+
+Sau khi chuẩn hóa CRLF thành LF, SHA256 là `82af1569237c6973f24a2992792fb78bb893c85fe245ec4ffb3dba663d8cc38e`. Mã băm byte có thể khác do kiểu xuống dòng; đối chiếu mã băm sau cùng cách chuẩn hóa, không chỉ so số lượng giỏ hoặc tập đóng.
 
 ### Vì sao dùng mã sản phẩm thay vì tên sản phẩm
 
@@ -153,7 +155,7 @@ CHARM còn được thử trên một bộ dữ liệu nhỏ 6 giao dịch (min_
 - [x] Cài đặt Apriori, FP-Growth, CHARM
 - [x] Kiểm chứng CHARM bằng đáp án độc lập
 - [ ] Đo hiệu năng so sánh: thời gian, bộ nhớ, số tập, tỉ lệ nén
-- [ ] Sinh luật kết hợp (support, confidence, lift) từ tập đóng
+- [x] Sinh và kiểm chứng các luật đã xuất (support, confidence, lift) từ tập đóng
 - [ ] Phân tích hành vi theo nhóm khách hàng và theo mùa
 - [ ] Demo web gợi ý sản phẩm mua kèm
 - [ ] Báo cáo, slide, poster

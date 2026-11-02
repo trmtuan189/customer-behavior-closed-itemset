@@ -102,3 +102,22 @@ Chương trình cũng kiểm tra cấu trúc luật, luật trùng và các ngư
 Nguồn: results/rule_validation/summary.json và checked_rules.csv.
 
 Kết quả xác nhận tính nhất quán về số đếm và các chỉ số của những luật đã xuất. Phép kiểm tra chưa chứng minh tính đầy đủ của tập luật, tính đúng của nhãn nhóm sản phẩm hoặc hiệu quả ứng dụng kinh doanh.
+## 9. Kết quả benchmark sau khi bỏ import thừa
+
+Phiên benchmark này được dùng làm bảng so sánh thời gian chính hiện tại. Các bảng ở mục trước được giữ như lịch sử, không trộn số liệu giữa các phiên.
+
+Cả 27 lần chạy (9 cấu hình, mỗi cấu hình 3 lần) đều hoàn thành và khớp bộ tham chiếu, dùng cùng mã băm dữ liệu. Phiên này không ghi nhận timeout.
+
+| Support | Số tập mỗi thuật toán | CHARM (giây) | FP-Growth (giây) | Apriori (giây) |
+|---|---:|---:|---:|---:|
+| 5% | 28 | 0,738 | 0,683 | 17,711 |
+| 3% | 110 | 1,027 | 12,354 | 39,102 |
+| 2% | 323 | 2,056 | 35,908 | 266,956 |
+
+Thời gian là trung vị của 3 lần hợp lệ. Apriori và FP-Growth trả tập phổ biến; CHARM trả tập đóng. Trong ba cấu hình này, số tập phổ biến và tập đóng bằng nhau.
+
+Ở support 5%, FP-Growth có thời gian trung vị thấp nhất. Ở 3% và 2%, CHARM có thời gian trung vị thấp nhất trong các cài đặt được đo. Không khái quát kết luận này cho mọi dữ liệu hoặc mọi cài đặt.
+
+Bộ nhớ vẫn là đỉnh working set của toàn tiến trình, gồm dữ liệu và môi trường, không phải cấp phát riêng thuật toán. Bỏ import pandas không có nghĩa đã cô lập được bộ nhớ thuật toán. Timeout của phiên trước vẫn giữ nguyên và chưa xác định được nguyên nhân.
+
+Nguồn: results/benchmark_clean_imports/summary.csv, runs.csv và environment.json.
